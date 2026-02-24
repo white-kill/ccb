@@ -1,0 +1,3 @@
+class CardServicesState {
+  CardServicesState();
+} 

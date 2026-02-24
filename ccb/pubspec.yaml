@@ -1,0 +1,248 @@
+name: ccb
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.0
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  intl: any
+  cupertino_icons: ^1.0.8
+  local_auth: ^2.2.0
+  sp_util: ^2.0.3
+  event_bus: ^2.0.0
+  flutter_screenutil: ^5.9.3
+  get: ^4.7.2
+  dio: ^5.3.2
+  cached_network_image: ^3.2.1
+  flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: 2.4.4
+  card_swiper: ^3.0.1
+  fl_chart: 0.68.0
+  lpinyin: 2.0.3
+  azlistview: 2.0.0
+  device_info_plus: ^9.0.0
+
+  webview_flutter: ^4.10.0
+  webview_flutter_android: ^4.0.0
+  webview_flutter_wkwebview: ^3.13.0
+
+  flutter_smart_dialog: ^4.9.8+7
+  common_utils: 2.1.0
+  pull_to_refresh_flutter3: ^2.0.1
+  flutter_local_notifications: any
+  square_progress_indicator: ^0.0.8
+  dotted_dashed_line: ^0.0.3
+  share_plus: ^11.0.0
+  permission_handler: any
+  path_provider: ^2.1.5  # 用于获取本地文件路径（可选）
+  d_chart: 2.8.0
+  syncfusion_flutter_charts: 29.2.11
+#  syncfusion_flutter_charts: 27.1.53
+#  image_gallery_saver: 1.7.1
+#  gallery_saver: 2.3.2
+#  gallery_saver_plus: ^3.2.4
+  url_launcher: ^6.3.1
+  camera: ^0.10.6
+
+  calendar_date_picker2:
+    path: packages/calendar_date_picker2
+
+  wb_base_widget:
+    path: modules/wb_base_widget
+  flutter_picker_plus:
+    path: modules/flutter_picker_plus
+  f_verification_box:
+    path: modules/f_verification_box
+  gallery_saver_plus:
+    path: modules/gallery_saver_plus
+
+  #flutter pub run flutter_launcher_icons
+flutter_launcher_icons:
+  image_path_android: "assets/icon/ccb.png"
+  image_path_ios: "assets/icon/ccb.png"
+  android: true
+  ios: true
+  min_sdk_android: 21
+  remove_alpha_ios: true
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^4.0.0
+
+
+flutter_native_splash:
+  background_image_ios: assets/icon/splash.png
+  background_image_android: assets/icon/splash.png
+  web: false
+
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+#    - assets/fill/
+    - assets/images/
+    - assets/images/temp/
+    - assets/images/card/
+    - assets/icon/
+    - assets/new_images/
+    - assets/new_images/card/
+    - assets/new_images/card/card_package/
+    - assets/new_images/card/card_services/
+    - assets/new_images/card/edu_change/
+    - assets/new_images/card/fen_qi_cha/
+    - assets/new_images/card/fen_qi_tong/
+    - assets/new_images/card/ads/
+    - assets/new_images/life/
+    - assets/new_images/life/children/
+    - assets/new_images/life/children/more/
+    - assets/new_images/life/ads/
+    - assets/new_images/cai_fu/
+    - assets/new_images/cai_fu/children/
+    - assets/new_images/cai_fu/children/jjtz/
+    - assets/new_images/cai_fu/children/bx/
+    - assets/new_images/cai_fu/children/gjs/
+    - assets/new_images/cai_fu/children/more/
+    - assets/new_images/cai_fu/children/ckcp/
+    - assets/new_images/cai_fu/children/dqck/
+    - assets/new_images/cai_fu/children/decd/
+    - assets/new_images/cai_fu/children/jgxck/
+    - assets/new_images/home/more/
+    - assets/new_images/home/
+    - assets/new_images/home/children/
+    - assets/new_images/home/account/manager/
+    - assets/new_images/home/account/detail/children/
+    - assets/new_images/mine/children/
+    - assets/new_images/mine/
+    - assets/gif/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: PingFangSC
+      fonts:
+        - asset: fonts/PingFangSC-ttf/PingFangSC-Ultralight.ttf
+          weight: 100
+        - asset: fonts/PingFangSC-ttf/PingFangSC-Thin.ttf
+          weight: 200
+        - asset: fonts/PingFangSC-ttf/PingFangSC-Light.ttf
+          weight: 300
+        - asset: fonts/PingFangSC-ttf/PingFangSC-Regular.ttf
+          weight: 400
+        - asset: fonts/PingFangSC-ttf/PingFangSC-Medium.ttf
+          weight: 500
+        - asset: fonts/PingFangSC-ttf/PingFangSC-Semibold.ttf
+          weight: 600
+    - family: MiSans
+      fonts:
+        - asset: fonts/MiSans/MiSans-ExtraLight.ttf
+          weight: 100
+        - asset: fonts/MiSans/MiSans-Thin.ttf
+          weight: 200
+        - asset: fonts/MiSans/MiSans-Light.ttf
+          weight: 300
+        - asset: fonts/MiSans/MiSans-Regular.ttf
+          weight: 400
+        - asset: fonts/MiSans/MiSans-Medium.ttf
+          weight: 500
+        - asset: fonts/MiSans/MiSans-Semibold.ttf
+          weight: 600
+        - asset: fonts/MiSans/MiSans-Bold.ttf
+          weight: 700
+        - asset: fonts/MiSans/MiSans-Heavy.ttf
+          weight: 800
+
+    - family: Number
+      fonts:
+        - asset: fonts/Inter-Medium-8.otf
+    - family: NumberMedium-8
+      fonts:
+        - asset: fonts/Inter-Medium.ttf
+    - family: NumberBold10
+      fonts:
+        - asset: fonts/Inter-SemiBold-10.otf
+    - family: Money
+      fonts:
+        - asset: fonts/D-DIN-PRO-400-Regular.otf
+          weight: 400
+        - asset: fonts/D-DIN-PRO-700-Bold.otf
+          weight: 700
+        - asset: fonts/D-DIN-PRO-800-ExtraBold.otf
+          weight: 800
+    - family: NumberMedium
+      fonts:
+        - asset: fonts/InterDisplay-Medium.ttf
+#    - family: dot
+#      fonts:
+#        - asset: fonts/Inter-ExtraBold.ttf
+
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package
