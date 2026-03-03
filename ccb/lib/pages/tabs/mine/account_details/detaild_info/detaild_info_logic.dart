@@ -41,16 +41,22 @@ class DetailInfoLogic extends GetxController {
 
   String valueName(String name) {
     switch (name) {
-      case '交易账户':
-        return  "${state.infoModel1.bankName} ${state.infoModel1.bankCard}";
+      case '交易账户1':
+        return  state.infoModel1.bankName;
+      case '交易账户2':
+        print(state.infoModel1.bankCard);
+        return  state.infoModel1.bankCard;
       case '交易子账户':
         return state.infoModel1.account;
       case '交易时间':
         return state.infoModel1.transactionTime;
       case '交易地点/附言':
         return state.infoModel1.merchantBranch;
-      case '对方账户':
-        return '${state.infoModel1.oppositeName} ${state.infoModel1.oppositeAccount}';
+      case '对方账户1':
+        return state.infoModel1.oppositeName;
+      case '对方账户2':
+        print(state.infoModel1.oppositeAccount);
+        return state.infoModel1.oppositeAccount;
       case '记账日':
         return state.infoModel1.accountsTime;
       case '账户余额':

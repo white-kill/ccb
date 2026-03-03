@@ -20,93 +20,118 @@ class DetailInfoPage extends BaseStateless {
   final DetailInfoLogic logic = Get.put(DetailInfoLogic());
   final DetailInfoState state = Get.find<DetailInfoLogic>().state;
 
-
-  void jumpPage(String name){
+  void jumpPage(String name) {
     SmartDialog.dismiss();
-    if(name == '建行客服'){
-      Get.toNamed(Routes.ccbCustomerPage,);
+    if (name == '建行客服') {
+      Get.toNamed(
+        Routes.ccbCustomerPage,
+      );
     }
-    if(name == '首页'){
+    if (name == '首页') {
       Get.offAllNamed(Routes.tabs);
       final IndexLogic logic = Get.put(IndexLogic());
       logic.selectIndex(0);
     }
-    if(name == '消息'){
-      Get.toNamed(Routes.mineMessagePage,);
+    if (name == '消息') {
+      Get.toNamed(
+        Routes.mineMessagePage,
+      );
     }
-
   }
 
   @override
   List<Widget>? get rightAction => [
-    Image(
-      image: 'ic_mx_search'.png3x,
-      width: 18.w,
-      height: 18.w,
-    ).withOnTap(onTap: () {
-      Get.offNamed(Routes.detailSearchPage);
-    }).withPadding(
-      right: 20.w,
-    ),
-    ScalePointWidget(
-      left:110.w,
-      dx: 60.w,
-      width: 130.w,
-      content:   ListView.separated(
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            Map<String,dynamic> data = state.rightDataList[index];
-            return Row(
-              children: [
-                Image(
-                  image: data['icon'].toString().png3x,
-                  width: 16.w,
-                  height: 16.w,
-                  color: Colors.black,
-                ).withPadding(
-                  left: 4.w,
-                  right: 10.w,
-                ),
-                BaseText(
-                  text: data['name'],
-                  color: Colors.black,
+        Image(
+          image: 'ic_mx_search'.png3x,
+          width: 18.w,
+          height: 18.w,
+        ).withOnTap(onTap: () {
+          Get.offNamed(Routes.detailSearchPage);
+        }).withPadding(
+          right: 20.w,
+        ),
+        ScalePointWidget(
+          left: 110.w,
+          dx: 60.w,
+          width: 130.w,
+          content: ListView.separated(
+              shrinkWrap: true,
+              padding: EdgeInsets.zero,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                Map<String, dynamic> data = state.rightDataList[index];
+                return Row(
+                  children: [
+                    Image(
+                      image: data['icon'].toString().png3x,
+                      width: 16.w,
+                      height: 16.w,
+                      color: Colors.black,
+                    ).withPadding(
+                      left: 4.w,
+                      right: 10.w,
+                    ),
+                    BaseText(
+                      text: data['name'],
+                      color: Colors.black,
+                    )
+                  ],
                 )
-              ],
-            ).withContainer(
-                padding: EdgeInsets.all(10.w),
-                height: 40.w, alignment: Alignment.centerLeft).withOnTap(onTap: (){
-              jumpPage(data['name']);
-            });
-          },
-          separatorBuilder: (context, index) {
-            return Container(
-              width: 1.sw,
-              height: 0.5.w,
-              color: const Color(0xffdedede),
-            );
-          },
-          itemCount: state.rightDataList.length),
-    ).withPadding(right: 16.w),
-  ];
+                    .withContainer(
+                        padding: EdgeInsets.all(10.w),
+                        height: 40.w,
+                        alignment: Alignment.centerLeft)
+                    .withOnTap(onTap: () {
+                  jumpPage(data['name']);
+                });
+              },
+              separatorBuilder: (context, index) {
+                return Container(
+                  width: 1.sw,
+                  height: 0.5.w,
+                  color: const Color(0xffdedede),
+                );
+              },
+              itemCount: state.rightDataList.length),
+        ).withPadding(right: 16.w),
+      ];
 
-
-  Widget replaceAsterisksWithImages(String text) {
+  Widget replaceAsterisksWithImages(String name, String text) {
     final parts = text.split('*');
     final spans = <InlineSpan>[];
 
-    for (int i = 0; i < parts.length; i++) {
-      spans.add(TextSpan(text: parts[i], style:TextStyle(
-          fontSize: 14.sp,
+    spans.add(TextSpan(text: "${name}  ", style:TextStyle(
+      fontSize: 14.sp,
+    ),));
+
+    if(state.infoModel1.excerpt == '跨行转出'|| state.infoModel1.excerpt == '电子汇入' || state.infoModel1.excerpt == '汇兑'|| state.infoModel1.excerpt == '跨行转出') {
+      spans.add(TextSpan(text: parts[0], style:TextStyle(
+        fontSize: 14.sp,
       ),));
-      if (i != parts.length - 1) {
+      for (int i = 0; i < 3; i++) {
         spans.add(WidgetSpan(
           child: Image(image: 'ic_ccb_xin'.png3x,width: 6.w,height: 6.w,).withPadding(
-            bottom: 4.w
+              bottom: 4.w
           ),
           alignment: PlaceholderAlignment.middle,
         ));
+      }
+      spans.add(TextSpan(text: parts[parts.length - 1], style:TextStyle(
+        fontSize: 14.sp,
+      ),));
+    }else{
+      for (int i = 0; i < parts.length; i++) {
+        spans.add(TextSpan(text: parts[i], style:TextStyle(
+          fontSize: 14.sp,
+        ),));
+        if (i != parts.length - 1) {
+          spans.add(WidgetSpan(
+            child: Image(image: 'ic_ccb_xin'.png3x,width: 6.w,height: 6.w,).withPadding(
+                bottom: 4.w
+            ),
+            alignment: PlaceholderAlignment.middle,
+          ));
+        }
       }
     }
 
@@ -130,9 +155,7 @@ class DetailInfoPage extends BaseStateless {
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(8.w),
-                      topLeft: Radius.circular(8.w)
-                  )
-              ),
+                      topLeft: Radius.circular(8.w))),
               height: 120.w,
               margin: EdgeInsets.only(left: 12.w, right: 12.w, top: 12.w),
               child: Column(
@@ -144,7 +167,9 @@ class DetailInfoPage extends BaseStateless {
                     color: const Color(0xff333333),
                   ),
 
-                  SizedBox(height: 12.w,),
+                  SizedBox(
+                    height: 12.w,
+                  ),
 
                   RichText(
                     text: TextSpan(children: [
@@ -161,16 +186,15 @@ class DetailInfoPage extends BaseStateless {
                               fontSize: 28.sp,
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
-                              height: 1
-                          )),
+                              height: 1)),
                       TextSpan(
-                          text: logic.type() +  state.infoModel1.amount.bankBalance,
+                          text: logic.type() +
+                              state.infoModel1.amount.bankBalance,
                           style: TextStyle(
                               fontSize: 28.sp,
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
-                              height: 1
-                          )),
+                              height: 1)),
                     ]),
                   )
                   // BaseText(
@@ -194,26 +218,26 @@ class DetailInfoPage extends BaseStateless {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            BaseText(text: state.nameLis[index],
+                            BaseText(
+                              text: state.nameLis[index],
                               style: TextStyle(
                                 // fontWeight: FontWeight.bold,
-                                color: Color(0Xffbfbfbf),fontSize: 14.sp,
+                                color: Color(0Xffbfbfbf), fontSize: 14.sp,
                               ),
                             ),
+
                             if(state.nameLis[index] == '交易账户' || state.nameLis[index] == '对方账户')
-                              replaceAsterisksWithImages(logic.valueName(state.nameLis[index])).withContainer(
+                              replaceAsterisksWithImages(logic.valueName("${state.nameLis[index]}1"),logic.valueName("${state.nameLis[index]}2")).withContainer(
                                 alignment: Alignment.centerRight,
                                 width:  220.w,
                               ),
-
-                            if(state.nameLis[index] != '交易账户' && state.nameLis[index] != '对方账户')
+                            if (state.nameLis[index] != '交易账户' &&
+                                state.nameLis[index] != '对方账户')
                               BaseText(
                                 text: logic.valueName(state.nameLis[index]),
                                 maxLines: 10,
                                 textAlign: TextAlign.right,
                               ).withSizedBox(width: 220.w)
-
-
                           ],
                         ),
                       );
@@ -223,32 +247,28 @@ class DetailInfoPage extends BaseStateless {
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(8.w),
-                    bottomLeft: Radius.circular(8.w)
-                  )
-              ),
-                    margin: EdgeInsets.only(left: 12.w, right: 12.w),
+                      bottomRight: Radius.circular(8.w),
+                      bottomLeft: Radius.circular(8.w))),
+              margin: EdgeInsets.only(left: 12.w, right: 12.w),
             ),
-
-
             Container(
               width: 1.sw,
               // height: 60.w,
               margin: EdgeInsets.all(12.w),
-              padding: EdgeInsets.only(left: 12.w,top: 12.w,bottom: 12.w,right: 12.w),
+              padding: EdgeInsets.only(
+                  left: 12.w, top: 12.w, bottom: 12.w, right: 12.w),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(8.w))
-              ),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(8.w))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BaseText(text: '备注',color: Color(0Xffbfbfbf)),
-
-                  TextFieldWidget(hintText: '记录点什么',hintStyle: TextStyle(
-                    color: Color(0xff333333)
-                  ),cursorColor: Color(0xff333333),),
-
+                  BaseText(text: '备注', color: Color(0Xffbfbfbf)),
+                  TextFieldWidget(
+                    hintText: '记录点什么',
+                    hintStyle: TextStyle(color: Color(0xff333333)),
+                    cursorColor: Color(0xff333333),
+                  ),
                   Container(
                     width: 1.sw,
                     height: 1.w,
