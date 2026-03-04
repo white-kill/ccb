@@ -104,34 +104,17 @@ class DetailInfoPage extends BaseStateless {
       fontSize: 14.sp,
     ),));
 
-    if(state.infoModel1.excerpt == '跨行转出'|| state.infoModel1.excerpt == '电子汇入' || state.infoModel1.excerpt == '汇兑'|| state.infoModel1.excerpt == '跨行转出') {
-      spans.add(TextSpan(text: parts[0], style:TextStyle(
+    for (int i = 0; i < parts.length; i++) {
+      spans.add(TextSpan(text: parts[i], style:TextStyle(
         fontSize: 14.sp,
       ),));
-      for (int i = 0; i < 3; i++) {
+      if (i != parts.length - 1) {
         spans.add(WidgetSpan(
           child: Image(image: 'ic_ccb_xin'.png3x,width: 6.w,height: 6.w,).withPadding(
               bottom: 4.w
           ),
           alignment: PlaceholderAlignment.middle,
         ));
-      }
-      spans.add(TextSpan(text: parts[parts.length - 1], style:TextStyle(
-        fontSize: 14.sp,
-      ),));
-    }else{
-      for (int i = 0; i < parts.length; i++) {
-        spans.add(TextSpan(text: parts[i], style:TextStyle(
-          fontSize: 14.sp,
-        ),));
-        if (i != parts.length - 1) {
-          spans.add(WidgetSpan(
-            child: Image(image: 'ic_ccb_xin'.png3x,width: 6.w,height: 6.w,).withPadding(
-                bottom: 4.w
-            ),
-            alignment: PlaceholderAlignment.middle,
-          ));
-        }
       }
     }
 

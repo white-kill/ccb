@@ -44,7 +44,6 @@ class DetailInfoLogic extends GetxController {
       case '交易账户1':
         return  state.infoModel1.bankName;
       case '交易账户2':
-        print(state.infoModel1.bankCard);
         return  state.infoModel1.bankCard;
       case '交易子账户':
         return state.infoModel1.account;
@@ -55,7 +54,6 @@ class DetailInfoLogic extends GetxController {
       case '对方账户1':
         return state.infoModel1.oppositeName;
       case '对方账户2':
-        print(state.infoModel1.oppositeAccount);
         return state.infoModel1.oppositeAccount;
       case '记账日':
         return state.infoModel1.accountsTime;

@@ -42,6 +42,11 @@ BillInfoModel $BillInfoModelFromJson(Map<String, dynamic> json) {
   if (oppositeAccount != null) {
     billInfoModel.oppositeAccount = oppositeAccount;
   }
+  final String? oppositeAccount2 = jsonConvert.convert<String>(
+      json['oppositeAccount2']);
+  if (oppositeAccount2 != null) {
+    billInfoModel.oppositeAccount2 = oppositeAccount2;
+  }
   final String? accountsTime = jsonConvert.convert<String>(
       json['accountsTime']);
   if (accountsTime != null) {
@@ -75,6 +80,7 @@ Map<String, dynamic> $BillInfoModelToJson(BillInfoModel entity) {
   data['accountBalance'] = entity.accountBalance;
   data['transactionTime'] = entity.transactionTime;
   data['oppositeAccount'] = entity.oppositeAccount;
+  data['oppositeAccount2'] = entity.oppositeAccount2;
   data['accountsTime'] = entity.accountsTime;
   data['merchantBranch'] = entity.merchantBranch;
   data['oppositeName'] = entity.oppositeName;
@@ -93,6 +99,7 @@ extension BillInfoModelExtension on BillInfoModel {
     double? accountBalance,
     String? transactionTime,
     String? oppositeAccount,
+    String? oppositeAccount2,
     String? accountsTime,
     String? merchantBranch,
     String? oppositeName,
@@ -108,6 +115,7 @@ extension BillInfoModelExtension on BillInfoModel {
       ..accountBalance = accountBalance ?? this.accountBalance
       ..transactionTime = transactionTime ?? this.transactionTime
       ..oppositeAccount = oppositeAccount ?? this.oppositeAccount
+      ..oppositeAccount2 = oppositeAccount2 ?? this.oppositeAccount2
       ..accountsTime = accountsTime ?? this.accountsTime
       ..merchantBranch = merchantBranch ?? this.merchantBranch
       ..oppositeName = oppositeName ?? this.oppositeName

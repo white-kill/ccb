@@ -14,6 +14,7 @@ class BillInfoModel {
 	double accountBalance = 0;
 	String transactionTime = '';
 	String oppositeAccount = '';
+	String oppositeAccount2 = '';
 	String accountsTime = '';
 	String merchantBranch = '';
 	String oppositeName = '';
