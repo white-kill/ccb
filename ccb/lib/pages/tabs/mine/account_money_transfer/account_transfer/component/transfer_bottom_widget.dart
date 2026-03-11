@@ -185,7 +185,7 @@ class _TransferBottomWidgetState extends State<TransferBottomWidget> {
                         EdgeInsets.only(left: 32.w, right: 32.w, top: 12.sp),
                     width: 1.sw)
                 : BaseText(
-                    text: "将根据转账的信息预计到账时间",
+                    text: "将根据转账信息预计到账时间",
                     fontSize: 12.sp,
                     color: const Color(0xff999999),
                   )

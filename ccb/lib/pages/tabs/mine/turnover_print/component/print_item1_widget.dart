@@ -32,8 +32,8 @@ class _PrintItem1WidgetState extends State<PrintItem1Widget> {
     '币种',
     '明细版本',
     '明细类型',
-    '明细开始日\n期',
-    '明细结束日\n期',
+    '明细开始日期',
+    '明细结束日期',
     ''
   ];
 

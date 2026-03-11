@@ -13,9 +13,13 @@ class AccountPreviewLogic extends GetxController
   @override
   void onInit() {
     super.onInit();
+    final args = Get.arguments;
+    final tabIndex = (args is Map && args['tabIndex'] != null)
+        ? args['tabIndex'] as int
+        : 1;
     state.tabController = TabController(
       length: state.tabNameList.length,
-      initialIndex: 1,
+      initialIndex: tabIndex,
       vsync: this,
     );
     

@@ -73,13 +73,14 @@ class _MinePropertyWidgetState extends State<MinePropertyWidget> {
             ).withOnTap(onTap: () {
               Get.toNamed(Routes.accountPreview);
             })),
-
         GetBuilder(
             id: 'updateBalance',
             builder: (BalanceLogic c) {
               return Positioned(
                 left: stackPosition.getX(70),
-                bottom: c.showValue.value ? stackPosition.getY(50):stackPosition.getY(80),
+                bottom: c.showValue.value
+                    ? stackPosition.getY(50)
+                    : stackPosition.getY(80),
                 child: Column(
                   children: [
                     BalanceWidget(
@@ -108,9 +109,36 @@ class _MinePropertyWidgetState extends State<MinePropertyWidget> {
                           ],
                         )),
                   ],
+                ).withOnTap(onTap: () {
+                  Get.toNamed(Routes.accountPreview, arguments: {'tabIndex': 0});
+                }),
+              );
+            }),
+        GetBuilder(
+            id: 'updateBalance',
+            builder: (BalanceLogic c) {
+             return Positioned(
+                right: stackPosition.getX(70),
+               bottom: c.showValue.value
+                   ? stackPosition.getY(60)
+                   : stackPosition.getY(50),
+                child: Container(
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: c.showValue.value ? "--" : "****",
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black)),
+                      ],
+                    ),
+                  ),
                 ),
               );
             }),
+
       ],
     );
   }

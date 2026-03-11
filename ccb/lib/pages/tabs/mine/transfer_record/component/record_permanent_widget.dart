@@ -94,8 +94,11 @@ class _RecordPermanentWidgetState extends State<RecordPermanentWidget> {
 
   void clearData() {
     state.selList.clear();
-    state.selList.add(state.redData.accountType == ''?'全部':state.redData.accountType);
-    state.selList.add(state.redData.transactionChannel==''?' 全部 ':state.redData.transactionChannel);
+    state.selList.add(
+        state.redData.accountType == '' ? '全部' : state.redData.accountType);
+    state.selList.add(state.redData.transactionChannel == ''
+        ? ' 全部 '
+        : state.redData.transactionChannel);
     state.controller1.text = state.redData.minAmount;
     state.controller2.text = state.redData.maxAmount;
     setState(() {});
@@ -106,113 +109,98 @@ class _RecordPermanentWidgetState extends State<RecordPermanentWidget> {
     final navHeight =
         MediaQuery.of(context).padding.top + AppBar().preferredSize.height;
     return Container(
-      width: 1.sw * 0.78,
-      height: double.infinity,
-      decoration: const BoxDecoration(
+      width: 1.sw,
+      // height: 1.sh * ,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
         color: Colors.white,
-        boxShadow: [
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(8.w),
+          topRight: Radius.circular(8.w),
+        ),
+        boxShadow: const [
           BoxShadow(color: Colors.grey, blurRadius: 8, spreadRadius: 0.2)
         ],
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
+          // Container(
+          //   height: navHeight,
+          //   color: const Color(0xff3C6DD3),
+          //   alignment: Alignment.bottomLeft,
+          //   child: Padding(
+          //     padding: EdgeInsets.only(left: 10.w, bottom: 10.w),
+          //     child: Icon(Icons.clear, size: 30.h, color: Colors.white),
+          //   ).withOnTap(onTap: () {
+          //     clearData();
+          //     SmartDialog.dismiss(force: true);
+          //   }),
+          // ),
           Container(
-            height: navHeight,
-            color: const Color(0xff3C6DD3),
+            height: 50.w,
             alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: EdgeInsets.only(left: 10.w, bottom: 10.w),
-              child: Icon(Icons.clear, size: 30.h, color: Colors.white),
-            ).withOnTap(onTap: () {
-              clearData();
-              SmartDialog.dismiss(force: true);
-            }),
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                bottom: BorderSide(color: Color(0xFFf2f2f2), width: 1),
+              ),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8.w),
+                topRight: Radius.circular(8.w),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 10.w, bottom: 10.w),
+                  child: Icon(Icons.clear, size: 25.w, color: Color(0xFFc5c5c5)),
+                ).withOnTap(onTap: () {
+                  clearData();
+                  SmartDialog.dismiss(force: true);
+                }),
+                BaseText(text: "筛选", fontSize: 16.w,),
+                Padding(
+                  padding: EdgeInsets.only(right: 10.w, bottom: 10.w),
+                  child: SizedBox(width: 25.w,),
+                ).withOnTap(onTap: () {
+
+                }),
+              ],
+            ),
           ),
-          Expanded(
-              child: ListView(
+          ListView(
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             children: [
               BaseText(
                 text: '交易金额',
                 fontSize: 16.sp,
-              ).withPadding(top: 20.w, left: 12.w, right: 12.w),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 100.w,
-                    height: 32.w,
-                    padding: EdgeInsets.only(left: 6.w),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(4.w)),
-                      border: Border.all(
-                        color: const Color(0xffCBCBCB),
-                        width: 1.w,
-                      ),
-                    ),
-                    child: TextFieldWidget(
-                      hintText: '最低金额',
-                      controller: state.controller1,
-                      textAlign: TextAlign.center,
-                      hintStyle: TextStyle(
-                        fontSize: 14.sp,
-                        color: const Color(0xffCBCBCB),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 8.w,
-                    height: 1.w,
-                    color: Colors.black,
-                    margin: EdgeInsets.only(left: 21.w, right: 21.w),
-                  ),
-                  Container(
-                    width: 100.w,
-                    height: 32.w,
-                    padding: EdgeInsets.only(left: 6.w),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(4.w)),
-                      border: Border.all(
-                        color: const Color(0xffCBCBCB),
-                        width: 1.w,
-                      ),
-                    ),
-                    child: TextFieldWidget(
-                      hintText: '最高金额',
-                      controller: state.controller2,
-                      textAlign: TextAlign.center,
-                      hintStyle: TextStyle(
-                        fontSize: 14.sp,
-                        color: const Color(0xffCBCBCB),
-                      ),
-                    ),
-                  )
-                ],
-              ).withPadding(top: 12.w, bottom: 12.w),
+              ).withPadding(top: 20.w, left: 12.w, right: 12.w, bottom: 15.w),
               VerticalGridView(
                 padding: EdgeInsets.only(left: 12.w, right: 12.w),
                 widgetBuilder: (_, index) {
+                  final selected = selectName(data1[index]);
                   return Container(
                     decoration: BoxDecoration(
-                        border: Border.all(
-                            color: const Color(0xffd2d2d2), width: 1.w),
-                        image: selectName(data1[index])
-                            ? DecorationImage(
-                                image: 'ic_zzmx_tag'.png3x,
-                                alignment: Alignment.bottomRight,
-                                fit: BoxFit.none,
-                              )
-                            : null,
-                        borderRadius: BorderRadius.all(Radius.circular(4.w))),
+                        color: selected
+                            ? const Color(0xfff4f5fa)
+                            : const Color(0xfff6f6f6),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(4.w))),
                     alignment: Alignment.center,
                     child: BaseText(
                       text: data1[index],
                       style: TextStyle(
-                        fontWeight: selectName(data1[index])
+                        fontWeight: selected
                             ? FontWeight.bold
                             : FontWeight.normal,
-                        color: selectColor(data1[index]),
+                        color: selected
+                            ? const Color(0xff6979ab)
+                            : const Color(0xff636363),
                         fontSize: 10.sp,
                       ),
                     ),
@@ -226,11 +214,94 @@ class _RecordPermanentWidgetState extends State<RecordPermanentWidget> {
                 mainHeight: 28.w,
                 spacing: 15.w,
               ),
-              Container(
-                margin: EdgeInsets.only(top: 20.w),
-                color: const Color(0xFFF7F7F7),
-                height: 10.w,
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Expanded(
+                    child: Container(
+                      width: 100.w,
+                      height: 32.w,
+                      padding: EdgeInsets.only(left: 6.w),
+                      decoration: BoxDecoration(
+                        // borderRadius: BorderRadius.all(Radius.circular(4.w)),
+                        border: Border.all(
+                          color: const Color(0xffCBCBCB),
+                          width: 1.w,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Text("¥"),
+                          SizedBox(
+                            width: 8.w,
+                          ),
+                          Expanded(
+                            child: TextFieldWidget(
+                              hintText: '最低金额',
+                              controller: state.controller1,
+                              textAlign: TextAlign.start,
+                              hintStyle: TextStyle(
+                                fontSize: 14.sp,
+                                color: const Color(0xffCBCBCB),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 8.w,
+                    height: 1.w,
+                    color: Colors.black,
+                    margin: EdgeInsets.only(left: 21.w, right: 21.w),
+                  ),
+                  Expanded(
+                    child: Container(
+                      width: 100.w,
+                      height: 32.w,
+                      padding: EdgeInsets.only(left: 6.w),
+                      decoration: BoxDecoration(
+                        // borderRadius: BorderRadius.all(Radius.circular(4.w)),
+                        border: Border.all(
+                          color: const Color(0xffCBCBCB),
+                          width: 1.w,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Text("¥"),
+                          SizedBox(
+                            width: 8.w,
+                          ),
+                          Expanded(
+                            child: TextFieldWidget(
+                              hintText: '最高金额',
+                              controller: state.controller2,
+                              textAlign: TextAlign.start,
+                              hintStyle: TextStyle(
+                                fontSize: 14.sp,
+                                color: const Color(0xffCBCBCB),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  )
+                ],
+              ).withPadding(top: 12.w, bottom: 12.w),
+              // Container(
+              //   margin: EdgeInsets.only(top: 20.w),
+              //   color: const Color(0xFFF7F7F7),
+              //   height: 10.w,
+              // ),
               BaseText(
                 text: '收款账户类型',
                 fontSize: 16.sp,
@@ -238,27 +309,31 @@ class _RecordPermanentWidgetState extends State<RecordPermanentWidget> {
               VerticalGridView(
                 padding: EdgeInsets.only(left: 12.w, right: 12.w),
                 widgetBuilder: (_, index) {
+                  final selected = selectName(data2[index]);
                   return Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
-                          color: const Color(0xffd2d2d2), width: 1.w),
+                      color: selected
+                          ? const Color(0xfff4f5fa)
+                          : const Color(0xfff6f6f6),
                       borderRadius: BorderRadius.all(Radius.circular(4.w)),
-                      image: selectName(data2[index])
-                          ? DecorationImage(
-                              image: 'ic_zzmx_tag'.png3x,
-                              alignment: Alignment.bottomRight,
-                              fit: BoxFit.none,
-                            )
-                          : null,
+                      // image: selected
+                      //     ? DecorationImage(
+                      //         image: 'ic_zzmx_tag'.png3x,
+                      //         alignment: Alignment.bottomRight,
+                      //         fit: BoxFit.none,
+                      //       )
+                      //     : null,
                     ),
                     alignment: Alignment.center,
                     child: BaseText(
                       text: data2[index],
                       style: TextStyle(
-                        fontWeight: selectName(data2[index])
+                        fontWeight: selected
                             ? FontWeight.bold
                             : FontWeight.normal,
-                        color: selectColor(data2[index]),
+                        color: selected
+                            ? const Color(0xff6979ab)
+                            : const Color(0xff636363),
                         fontSize: 10.sp,
                       ),
                     ),
@@ -280,26 +355,30 @@ class _RecordPermanentWidgetState extends State<RecordPermanentWidget> {
               VerticalGridView(
                 padding: EdgeInsets.only(left: 12.w, right: 12.w),
                 widgetBuilder: (_, index) {
+                  final selected = selectName(data3[index]);
                   return Container(
                     decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Color(0xffd2d2d2), width: 1.w),
-                        image: selectName(data3[index])
-                            ? DecorationImage(
-                                image: 'ic_zzmx_tag'.png3x,
-                                alignment: Alignment.bottomRight,
-                                fit: BoxFit.none,
-                              )
-                            : null,
+                        color: selected
+                            ? const Color(0xfff4f5fa)
+                            : const Color(0xfff6f6f6),
+                        // image: selected
+                        //     ? DecorationImage(
+                        //         image: 'ic_zzmx_tag'.png3x,
+                        //         alignment: Alignment.bottomRight,
+                        //         fit: BoxFit.none,
+                        //       )
+                        //     : null,
                         borderRadius: BorderRadius.all(Radius.circular(4.w))),
                     alignment: Alignment.center,
                     child: BaseText(
                       text: data3[index],
                       style: TextStyle(
-                        fontWeight: selectName(data3[index])
+                        fontWeight: selected
                             ? FontWeight.bold
                             : FontWeight.normal,
-                        color: selectColor(data3[index]),
+                        color: selected
+                            ? const Color(0xff6979ab)
+                            : const Color(0xff636363),
                         fontSize: 10.sp,
                       ),
                     ),
@@ -315,7 +394,7 @@ class _RecordPermanentWidgetState extends State<RecordPermanentWidget> {
                 spacing: 15.w,
               ),
             ],
-          )),
+          ),
           Container(
             height: 62.w,
             width: 1.sw,

@@ -37,8 +37,8 @@ class _Item1WidgetState extends State<Item1Widget> {
 
   String _maskName(String name) {
     if (name.isEmpty) return name;
-    if (name.length == 1) return name;
-    return '${'*' * (name.length - 1)}${name[name.length - 1]}';
+    if (name.length == 1) return '*';
+    return '*${name.substring(1)}';
   }
 
   Widget _buildShareReceiverBody(String maskedName, String maskedCard) {

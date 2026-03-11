@@ -205,7 +205,7 @@ class TransferRecordLogic extends GetxController {
   void openPermanentDialog() {
     SmartDialog.show(
       permanent: true,
-      alignment: Alignment.centerRight,
+      alignment: Alignment.bottomCenter,
       usePenetrate: false,
       builder: (_) {
         return const RecordPermanentWidget();

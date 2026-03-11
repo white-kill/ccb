@@ -99,7 +99,7 @@ class PersonTransferLogic extends GetxController {
   }
 
   Widget _listDialog2() {
-    var list = ['当天', '七天', '一个月', '近三个月', '近六个月'];
+    var list = ['当天', '七天', '一个月', '近3月', '近6月'];
     return Container(
       width: 1.sw,
       height: (list.length * 45).w + 6.w,

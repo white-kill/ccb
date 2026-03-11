@@ -18,10 +18,10 @@ class TopBannerWidget extends StatefulWidget {
 }
 
 class _TopBannerWidgetState extends State<TopBannerWidget> {
-  List<String> nameList = ['账户查询', '转账汇款', '贷款', '扫一扫'];
+  List<String> nameList = ['账户总览', '转账汇款', '贷款', '扫一扫'];
 
   void jumpPage(String name) {
-    if (name == '账户查询') {
+    if (name == '账户总览') {
       Get.toNamed(Routes.accountPreview);
     }
 
