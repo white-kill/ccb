@@ -41,7 +41,7 @@ class _Item2WidgetState extends State<Item2Widget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BaseText(text: model.name,color: Color(0xff333333),fontSize: 16,),
+                    BaseText(text: model.name.isEmpty ? model.name : '*${model.name.substring(1)}',color: Color(0xff333333),fontSize: 16,),
                     BaseText(text: "${model.bankName}（${model.bankCard.maskBankCardNumber()}）",color: Color(0xff333333),fontSize: 13,),
                   ],
                 )

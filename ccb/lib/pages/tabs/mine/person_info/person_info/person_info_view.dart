@@ -82,7 +82,7 @@ class Person_infoPage extends BaseStateless {
     final sections = [
       _buildSection(state.items.sublist(0, 3)),
       _buildSection(state.items.sublist(3, 6)),
-      _buildSection(state.items.sublist(6)),
+      // _buildSection(state.items.sublist(6)),
     ];
 
     return Column(

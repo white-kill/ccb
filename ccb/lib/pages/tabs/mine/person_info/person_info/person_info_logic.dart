@@ -80,13 +80,13 @@ class Person_infoLogic extends GetxController {
         rightImage: 'back_arrow',
         routeName: '',
       ),
-      item(
-        title: '我的龙信商',
-        subtitle: '',
-        rightContent: '',
-        rightImage: 'back_arrow',
-        routeName: '',
-      )
+      // item(
+      //   title: '我的龙信商',
+      //   subtitle: '',
+      //   rightContent: '',
+      //   rightImage: 'back_arrow',
+      //   routeName: '',
+      // )
     ]);
   }
 }
