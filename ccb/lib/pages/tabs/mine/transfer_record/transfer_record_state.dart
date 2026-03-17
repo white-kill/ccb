@@ -47,11 +47,11 @@ class TransferRecordState {
       case '七天':
         return [todayStart.subtract(const Duration(days: 6)), todayStart.add(const Duration(days: 1))];
       case '一个月':
-        return [DateTime(now.year, now.month - 1, now.day), todayStart.add(const Duration(days: 1))];
-      case '近三个月':
-        return [DateTime(now.year, now.month - 3, now.day), todayStart.add(const Duration(days: 1))];
-      case '近六个月':
-        return [DateTime(now.year, now.month - 6, now.day), todayStart.add(const Duration(days: 1))];
+        return [DateTime(now.year, now.month, 1), todayStart.add(const Duration(days: 1))];
+      case '近3月':
+        return [DateTime(now.year, now.month - 2, 1), todayStart.add(const Duration(days: 1))];
+      case '近6月':
+        return [DateTime(now.year, now.month - 5, 1), todayStart.add(const Duration(days: 1))];
       default:
         throw ArgumentError('不支持的日期范围类型: $rangeType');
     }
