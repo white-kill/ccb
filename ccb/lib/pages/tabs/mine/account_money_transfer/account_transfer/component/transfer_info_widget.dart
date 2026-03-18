@@ -240,9 +240,45 @@ class _TransferInfoWidgetState extends State<TransferInfoWidget>
                           margin: EdgeInsets.only(right: 20.w),
                           child: Icon(Icons.keyboard_arrow_right_sharp, color: Color(0xFFBEBEBE), weight: 1,))
                     ],
-                  )),
+                  ).withOnTap(onTap: () {
+                    _showSelectCardDialog(context);
+                  })),
             ],
           ))
+        ],
+      ),
+    );
+  }
+
+  void _showSelectCardDialog(BuildContext context) {
+    final cardNo = AppConfig.config.balanceLogic.card();
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.black54,
+      builder: (_) => Stack(
+        alignment: Alignment.center,
+        children: [
+          Image(
+            image: 'select_card'.png3x,
+            width: 1.sw,
+            fit: BoxFit.fitWidth,
+          ).withOnTap(onTap: () {
+            Get.back();
+          }),
+          Positioned(
+            bottom: 36.w,
+            left: 60.w,
+            child: BaseText(
+              text: cardNo,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14.sp,
+                fontFamily: 'PingFangSC',
+                letterSpacing: 2,
+              ),
+            ),
+          ),
         ],
       ),
     );
